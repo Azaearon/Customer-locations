@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get Location and Redirect</title>
+  <script>
+    function sendLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          
+          // Replace YOUR_ENTRY_ID_HERE with your actual entry ID
+          var formURL = "https://docs.google.com/forms/d/e/1FAIpQLSe40TmYP8iLiD_U19LZF4tX2mwN2dVqx1TXdvZBnGv46lSt0g/viewform?usp=pp_url&entry.542184838=" 
+                        + latitude + "," + longitude;
+          
+          window.location.href = formURL;
+        }, function(error) {
+          alert("Error getting location. Please enable location services.");
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+</head>
+<body onload="sendLocation()">
+  <h2>Getting your location, please wait...</h2>
+</body>
+</html>
